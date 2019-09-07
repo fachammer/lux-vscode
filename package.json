@@ -1,0 +1,25 @@
+{
+    "name": "lux-vscode",
+    "displayName": "Lux",
+    "description": "syntax highlighting for the Lux language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.38.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "lux",
+            "aliases": ["Lux", "lux"],
+            "extensions": [".lux"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "lux",
+            "scopeName": "source.lux",
+            "path": "./syntaxes/lux.tmLanguage.json"
+        }]
+    }
+}

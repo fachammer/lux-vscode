@@ -1,0 +1,80 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Lux",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#string"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#comment"
+		}
+	],
+	"repository": {
+		"constants": {
+			"patterns": [
+				{
+					"match": "(true|false)",
+					"name": "constant.language.boolean.lux"
+				},
+				{
+					"match": "([0-9][0-9,]*)",
+					"name": "constant.numeric.nat.lux"
+				},
+				{
+					"match": "((-|\\+)[0-9][0-9,]*)",
+					"name": "constant.numeric.int.lux"
+				},
+				{
+					"match": "(\\.[0-9][0-9,]*)",
+					"name": "constant.numeric.rev.lux"
+				},
+				{
+					"match": "((-|\\+)[0-9][0-9,]*\\.[0-9][0-9,]*((e|E)(-|\\+)[0-9][0-9,]*)?)",
+					"name": "constant.numeric.frac.lux"
+				},
+				{
+					"match": "#\\\"(.|(\\\\(.|u[0-9]{4})))\\\"",
+					"name": "constant.character.lux"
+				},
+				{
+					"match": "#[^\\s#]+",
+					"name": "constant.keyword.clojure"
+				}
+			]
+		},
+		"comment": {
+			"begin": "(?<!\\\\)##",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.lux"
+				}
+			},
+			"end": "$",
+			"name": "comment.line.hash.lux"
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.lux",
+				"match": "(def:|import:|\\.module:|program:)"
+			}]
+		},
+		"string": {
+			"name": "string.quoted.double.lux",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.lux",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.lux"
+}
