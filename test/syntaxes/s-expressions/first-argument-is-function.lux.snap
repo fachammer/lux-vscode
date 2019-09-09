@@ -1,0 +1,4 @@
+>(function)
+#^ source.lux meta.expression.lux punctuation.section.expression.begin.lux
+# ^^^^^^^^ source.lux meta.expression.lux entity.name.function.lux
+#         ^ source.lux meta.expression.lux punctuation.section.expression.end.trailing.lux

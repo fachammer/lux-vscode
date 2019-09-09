@@ -44,7 +44,8 @@
 				},
 				{
 					"match": "#[^\\s]+(?=\\s|\\])",
-					"name": "constant.keyword.clojure"
+					"name": "constant.keyword.clojure",
+					"_comment": "using constant.keyword.clojure instead of constant.keyword.lux to leverage existing language syntax themes for clojure"
 				}
 			]
 		},

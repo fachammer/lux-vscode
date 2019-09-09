@@ -10,16 +10,32 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "lux",
-            "aliases": ["Lux", "lux"],
-            "extensions": [".lux"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "lux",
-            "scopeName": "source.lux",
-            "path": "./syntaxes/lux.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "lux",
+                "aliases": [
+                    "Lux",
+                    "lux"
+                ],
+                "extensions": [
+                    ".lux"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "lux",
+                "scopeName": "source.lux",
+                "path": "./syntaxes/lux.tmLanguage.json"
+            }
+        ]
+    },
+    "scripts": {
+        "test": "vscode-tmgrammar-snap -s source.lux -g syntaxes/lux.tmLanguage.json -t 'test/syntaxes/**/*.lux'",
+        "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g syntaxes/lux.tmLanguage.json -t 'test/syntaxes/**/*.lux' --updateSnapshot"
+    },
+    "devDependencies": {
+        "vscode-tmgrammar-test": "^0.0.5"
     }
 }

@@ -1,0 +1,4 @@
+>true
+#^^^^ source.lux constant.language.bool.lux
+>false
+#^^^^^ source.lux constant.language.bool.lux
