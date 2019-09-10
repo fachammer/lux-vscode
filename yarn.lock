@@ -143,10 +143,10 @@ vscode-textmate@^4.1.1:
   dependencies:
     oniguruma "^7.2.0"
 
-vscode-tmgrammar-test@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/vscode-tmgrammar-test/-/vscode-tmgrammar-test-0.0.5.tgz#1a8dea568519a56bda35b32d3bab56494481c904"
-  integrity sha512-iK5OEahJ9RTWmscD16f7z/TAH32iW8GDvHFIktlySP8XJM/n6Pi2GOwayDTo/teF70cEW0uhIQfhGuBQ08lfpQ==
+vscode-tmgrammar-test@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/vscode-tmgrammar-test/-/vscode-tmgrammar-test-0.0.6.tgz#19ccd56b4affff1289e638ea4c83b03202cf1c11"
+  integrity sha512-L3I1FCe2f9EHxfZsk+RHgUFsoSk5RSnLpGWDgq8xVQYjVZkcdBOP0AckTjk4gxivuTZa6byRVRs9JPLcLaFPOw==
   dependencies:
     chalk "^2.4.2"
     commander "^2.20.0"

@@ -36,6 +36,6 @@
         "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g syntaxes/lux.tmLanguage.json -t 'test/syntaxes/**/*.lux' --updateSnapshot"
     },
     "devDependencies": {
-        "vscode-tmgrammar-test": "^0.0.5"
+        "vscode-tmgrammar-test": "^0.0.6"
     }
 }
