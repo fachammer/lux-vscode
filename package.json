@@ -3,6 +3,7 @@
     "displayName": "Lux",
     "description": "syntax highlighting for the Lux language",
     "version": "0.0.1",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.38.0"
     },
