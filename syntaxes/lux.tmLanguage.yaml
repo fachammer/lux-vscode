@@ -1,0 +1,85 @@
+name: Lux
+scopeName: source.lux
+patterns:
+- include: '#comments'
+- include: '#string'
+- include: '#constants'
+- include: '#s-expression'
+
+repository:
+  comments:
+    patterns:
+    - name: comment.line.double-hash.lux
+      begin: (##)
+      end: ($)
+    - name: comment.block.lux
+      begin: (#\()
+      end: (\))
+      patterns:
+      - include: $self
+  constants:
+    patterns:
+    - name: constant.language.bool.lux
+      match: (true|false)
+    - name: constant.numeric.int.lux
+      match: ((-|\+)?[0-9][0-9,]*)
+      # using constant.keyword.clojure instead of constant.tag.lux to
+      # leverage existing language syntax themes for clojure
+    - name: constant.keyword.clojure
+      match: (#[^\s]+(?=\s|\]))
+  s-expression:
+    name: meta.expression.lux
+    begin: (\()
+    beginCaptures:
+      '1':
+        name: punctuation.section.expression.begin.lux
+    end: (\))
+    endCaptures:
+      '1':
+        name: punctuation.section.expression.end.trailing.lux
+    patterns:
+    - match: (?<=\()([^"]+?:'*)(?=\s|\))
+      captures:
+        '1':
+          name: keyword.control.lux
+    - match: (?<=\()([^"]+?)(?=\s|\))
+      captures:
+        '1':
+          name: entity.name.function.lux
+    - include: '#s-expression'
+    - include: '#constants'
+    - include: '#string'
+    - include: '#comment'
+  string:
+    name: string.quoted.double.lux
+    begin: (")
+    end: (")
+    patterns:
+    - name: constant.character.escape.lux
+      match: (\.)
+  tuple:
+    name: meta.tuple.lux
+    begin: (\[)
+    beginCaptures:
+      '1':
+        name: punctuation.section.tuple.begin.lux
+    end: (\])
+    endCaptures:
+      '1':
+        name: punctuation.section.tuple.end.lux
+    patterns:
+    - include: $self
+  record:
+    name: meta.record.lux
+    begin: (\{)
+    beginCaptures:
+      '1':
+        name: punctuation.section.record.begin.lux
+    end: (\})
+    endCaptures:
+      '1':
+        name: punctuation.section.record.end.trailing.lux
+      '2':
+        name: punctuation.section.record.end.lux
+    patterns:
+    - include: $self

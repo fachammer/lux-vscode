@@ -27,15 +27,28 @@
             {
                 "language": "lux",
                 "scopeName": "source.lux",
-                "path": "./syntaxes/lux.tmLanguage.json"
+                "path": "./out/syntaxes/lux.tmLanguage.json"
             }
         ]
     },
+    "watch": {
+        "build": "syntaxes/lux.tmLanguage.yaml",
+        "test": "syntaxes/lux.tmLanguage.yaml"
+    },
     "scripts": {
-        "test": "vscode-tmgrammar-snap -s source.lux -g syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\"",
-        "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot"
+        "prebuild": "mkdirp out/syntaxes",
+        "build": "npx js-yaml syntaxes/lux.tmLanguage.yaml > out/syntaxes/lux.tmLanguage.json",
+        "build:watch": "npm-watch build",
+        "pretest": "npm run-script build",
+        "test": "vscode-tmgrammar-snap -s source.lux -g out/syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\"",
+        "test:watch": "npm-watch test",
+        "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g out/syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
+        "prepublish": "npm run-script test"
     },
     "devDependencies": {
+        "js-yaml": "^3.13.1",
+        "mkdirp": "^0.5.1",
+        "npm-watch": "^0.6.0",
         "vscode-tmgrammar-test": "^0.0.6"
     }
 }
