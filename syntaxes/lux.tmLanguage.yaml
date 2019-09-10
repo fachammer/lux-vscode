@@ -78,8 +78,6 @@ repository:
     end: (\})
     endCaptures:
       '1':
-        name: punctuation.section.record.end.trailing.lux
-      '2':
         name: punctuation.section.record.end.lux
     patterns:
     - include: $self
