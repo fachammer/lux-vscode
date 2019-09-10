@@ -44,7 +44,7 @@
         "test": "vscode-tmgrammar-snap -s source.lux -g out/syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\"",
         "test:watch": "npm-watch test",
         "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g out/syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
-        "prepublish": "npm run-script test"
+        "prepublish": "npm run-script build"
     },
     "devDependencies": {
         "js-yaml": "^3.13.1",
