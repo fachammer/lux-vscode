@@ -36,7 +36,7 @@ stages:
         vmImage: 'ubuntu-16.04'
       steps:
         - template: install-node-and-dependencies.yml
-        - download: none
+        - download: current
           artifact: vscode-extension-$(Agent.OS)
         - bash: yarn run vscode:package-only
           displayName: Package vscode extension
