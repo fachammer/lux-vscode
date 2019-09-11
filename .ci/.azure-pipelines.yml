@@ -9,7 +9,7 @@ stages:
     displayName: Build and Test
     jobs:
       - job: build
-        displayName: Build on
+        displayName: Build 
         strategy:
           matrix:
             linux:
@@ -37,7 +37,7 @@ stages:
           displayName: Build extension
       - job: test
         dependsOn: build
-        displayName: Test on 
+        displayName: Test  
         strategy:
           matrix:
             linux:
