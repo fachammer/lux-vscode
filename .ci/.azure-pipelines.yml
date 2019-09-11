@@ -26,7 +26,6 @@ stages:
           inputs:
             versionSpec: '11.x'
           displayName: 'Install Node.js'
-
         - task: CacheBeta@0
           inputs:
             key: yarn | $(Agent.OS) | $(RELATIVE_CACHE_FOLDER) | yarn.lock
@@ -49,4 +48,4 @@ stages:
           artifact: vscode-extension
         - publish: artifacts/package
           condition: eq(variables['Agent.OS'], 'Linux')
-          artifact: vscode-extension     
+          artifact: vscode-extension-package
