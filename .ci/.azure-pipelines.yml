@@ -38,7 +38,9 @@ stages:
         - template: install-node-and-dependencies.yml
         - download: current
           artifact: vscode-extension-$(Agent.OS)
-        - bash: mkdir -p artifacts/extension/ && cp -r vscode-extension-$(Agent.OS)/* artifacts/extension/
+        - bash: mkdir -p artifacts/extension/
+          displayName: Make artifacts directory
+        - bash: cp -r vscode-extension-$(Agent.OS)/* artifacts/extension/
           displayName: Move build files
         - bash: yarn run vscode:package-only
           displayName: Package vscode extension
