@@ -11,5 +11,10 @@ steps:
     key: yarn | $(Agent.OS) | "${{parameters.relativeCacheFolder}}" | yarn.lock
     path: $(YARN_CACHE_FOLDER)
   displayName: Cache Yarn packages
+- task: CacheBeta@0
+  inputs:
+    key: yarn | $(Agent.OS) | node_modules | yarn.lock
+    path: $(Pipeline.Workspace)/node_modules
+  displayName: Cache node_modules
 - bash: yarn --frozen-lockfile --cache-folder "$(Pipeline.Workspace)/${{parameters.relativeCacheFolder}}"
   displayName: Install dependencies
