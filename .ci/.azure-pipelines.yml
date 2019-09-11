@@ -2,7 +2,8 @@ trigger:
 - master
 
 variables:
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
+  RELATIVE_CACHE_FOLDER: node_modules
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/$(RELATIVE_CACHE_FOLDER)
 
 stages:
   - stage: build_test
@@ -28,7 +29,7 @@ stages:
 
         - task: CacheBeta@0
           inputs:
-            key: yarn | $(Agent.OS) | yarn.lock
+            key: yarn | $(Agent.OS) | $(RELATIVE_CACHE_FOLDER) | yarn.lock
             path: $(YARN_CACHE_FOLDER)
           displayName: Cache Yarn packages
         - bash: yarn
