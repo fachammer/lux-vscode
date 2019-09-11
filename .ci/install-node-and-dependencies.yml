@@ -8,8 +8,8 @@ steps:
   displayName: 'Install Node.js'
 - task: CacheBeta@0
   inputs:
-    key: yarn | $(Agent.OS) | "${{relativeCacheFolder}}" | yarn.lock
+    key: yarn | $(Agent.OS) | "${{parameters.relativeCacheFolder}}" | yarn.lock
     path: $(YARN_CACHE_FOLDER)
   displayName: Cache Yarn packages
-- bash: yarn --frozen-lockfile --cache-folder "$(Pipeline.Workspace)/${{relativeCacheFolder}}"
+- bash: yarn --frozen-lockfile --cache-folder "$(Pipeline.Workspace)/${{parameters.relativeCacheFolder}}"
   displayName: Install dependencies
