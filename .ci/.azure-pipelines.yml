@@ -25,21 +25,20 @@ steps:
     echo ">>> Started xvfb"
   displayName: Start xvfb
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
+- bash: yarn run build
+  displayName: Build extension
 
-- bash: |
-    yarn && yarn test
+- bash: yarn run test-only
   displayName: Run Tests
-  env:
-    DISPLAY: ':99.0'
 
 - bash: yarn run vscode:package
   displayName: Package vscode extension
 
-- task: CopyFiles@2
-  inputs:
-    contents: 'lux-vscode-*.vsix' 
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-
 - task: PublishBuildArtifacts@1
   inputs:
-    artifactName: vscode-package
+    ArtifactName: vscode-extension
+    PathtoPublish: artifacts/extension/
+- task: PublishBuildArtifacts@1
+  inputs:
+    ArtifactName: vscode-extension-package
+    PathtoPublish: artifacts/package/

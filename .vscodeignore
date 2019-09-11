@@ -1,9 +1,0 @@
-.vscode/
-.ci/
-syntaxes/
-test/
-.gitignore
-yarn.lock
-node_modules/
-.npmrc
-*.vsix
