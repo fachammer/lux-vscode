@@ -1,0 +1,15 @@
+parameters:
+  relativeCacheFolder: .cache/yarn
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '11.x'
+  displayName: 'Install Node.js'
+- task: CacheBeta@0
+  inputs:
+    key: yarn | $(Agent.OS) | "${{relativeCacheFolder}}" | yarn.lock
+    path: $(YARN_CACHE_FOLDER)
+  displayName: Cache Yarn packages
+- bash: yarn --frozen-lockfile --cache-folder "$(Pipeline.Workspace)/${{relativeCacheFolder}}"
+  displayName: Install dependencies

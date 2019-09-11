@@ -1,10 +1,6 @@
 trigger:
 - master
 
-variables:
-  RELATIVE_YARN_CACHE_FOLDER: .cache/yarn
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/$(RELATIVE_YARN_CACHE_FOLDER)
-
 stages:
   - stage: build_test
     displayName: Build and Test
@@ -22,17 +18,7 @@ stages:
         pool:
           vmImage: $(imageName)
         steps:
-        - task: NodeTool@0
-          inputs:
-            versionSpec: '11.x'
-          displayName: 'Install Node.js'
-        - task: CacheBeta@0
-          inputs:
-            key: yarn | $(Agent.OS) | "$(RELATIVE_YARN_CACHE_FOLDER)" | yarn.lock
-            path: $(YARN_CACHE_FOLDER)
-          displayName: Cache Yarn packages
-        - bash: yarn --frozen-lockfile --cache-folder $(YARN_CACHE_FOLDER)
-          displayName: Install dependencies
+        - template: install-node-and-dependencies.yml
         - script: yarn run build
           displayName: Build extension
         - bash: yarn run test-only
@@ -40,12 +26,21 @@ stages:
         - publish: artifacts/extension
           artifact: vscode-extension-$(Agent.OS)
           displayName: Publish extension artifact
+  - stage: package
+    dependsOn: build_test
+    displayName: Package and publish artifacts
+    jobs:
+    - job: package_publish
+      displayName: Package and publish artifacts
+      pool:
+        vmImage: 'ubuntu-16.04'
+      steps:
+        - template: install-node-and-dependencies.yml
+        - download: none
+          artifact: vscode-extension-$(Agent.OS)
         - bash: yarn run vscode:package-only
-          condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
           displayName: Package vscode extension
         - publish: artifacts/extension
-          condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
           artifact: vscode-extension
         - publish: artifacts/package
-          condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
           artifact: vscode-extension-package
