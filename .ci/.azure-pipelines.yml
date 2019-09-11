@@ -28,7 +28,7 @@ stages:
           displayName: 'Install Node.js'
         - task: CacheBeta@0
           inputs:
-            key: yarn | $(Agent.OS) | $(RELATIVE_YARN_CACHE_FOLDER) | yarn.lock
+            key: yarn | $(Agent.OS) | '$(RELATIVE_YARN_CACHE_FOLDER)' | yarn.lock
             path: $(YARN_CACHE_FOLDER)
           displayName: Cache Yarn packages
         - bash: yarn --frozen-lockfile --cache-folder $(YARN_CACHE_FOLDER)
