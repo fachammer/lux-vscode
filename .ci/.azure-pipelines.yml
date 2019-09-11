@@ -31,3 +31,15 @@ steps:
   displayName: Run Tests
   env:
     DISPLAY: ':99.0'
+
+- bash: yarn run vscode:package
+  displayName: Package vscode extension
+
+- task: CopyFiles@2
+  inputs:
+    contents: 'lux-vscode-*.vsix' 
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    artifactName: vscode-package
