@@ -38,6 +38,8 @@ stages:
         - template: install-node-and-dependencies.yml
         - download: current
           artifact: vscode-extension-$(Agent.OS)
+        - bash: mkdir -p artifacts/extension/ && vscode-extension-$(Agent.OS)/** artifacts/extension/
+          displayName: Move build files
         - bash: yarn run vscode:package-only
           displayName: Package vscode extension
         - publish: artifacts/extension
