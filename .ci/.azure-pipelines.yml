@@ -2,7 +2,7 @@ trigger:
 - master
 
 variables:
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
 
 stages:
   - stage: build_test
@@ -31,7 +31,7 @@ stages:
             key: yarn | $(Agent.OS) | yarn.lock
             path: $(YARN_CACHE_FOLDER)
           displayName: Cache Yarn packages
-        - bash: yarn --frozen-lockfile
+        - bash: yarn
           displayName: Install dependencies
         - script: yarn run build
           displayName: Build extension
