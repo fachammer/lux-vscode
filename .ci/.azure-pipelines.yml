@@ -42,11 +42,11 @@ stages:
           artifact: vscode-extension-$(Agent.OS)
           displayName: Publish extension artifact
         - bash: yarn run vscode:package-only
-          condition: eq($(Agent.OS), 'linux')
+          condition: eq(variables['Agent.OS'], 'Linux')
           displayName: Package vscode extension
         - publish: artifacts/extension
-          condition: eq($(Agent.OS), 'linux')
+          condition: eq(variables['Agent.OS'], 'Linux')
           artifact: vscode-extension
         - publish: artifacts/package
-          condition: eq($(Agent.OS), 'linux')
+          condition: eq(variables['Agent.OS'], 'Linux')
           artifact: vscode-extension     
