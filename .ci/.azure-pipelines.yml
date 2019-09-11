@@ -5,11 +5,11 @@ variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 stages:
-  - stage: build
-    displayName: Build
+  - stage: build_test
+    displayName: Build and Test
     jobs:
       - job: build
-        displayName: Build on $(Agent.OS)
+        displayName: Build on
         strategy:
           matrix:
             linux:
@@ -35,12 +35,9 @@ stages:
           displayName: Install dependencies
         - script: yarn run build
           displayName: Build extension
-        
-  - stage: test
-    displayName: Test
-    jobs:
       - job: test
-        displayName: Test on $(Agent.OS)
+        dependsOn: build
+        displayName: Test on 
         strategy:
           matrix:
             linux:
@@ -55,6 +52,7 @@ stages:
           - bash: yarn run test-only
             displayName: Run Tests
   - stage: artifacts
+    dependsOn: build_test
     displayName: Package and publish artifacts
     jobs:
     - job: artifacts
