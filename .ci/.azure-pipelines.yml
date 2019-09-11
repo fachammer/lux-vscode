@@ -25,15 +25,15 @@ steps:
     echo ">>> Started xvfb"
   displayName: Start xvfb
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
+- bash: yarn
+  displayName: Install dependencies
 - bash: yarn run build
   displayName: Build extension
-
 - bash: yarn run test-only
   displayName: Run Tests
-
 - bash: yarn run vscode:package
   displayName: Package vscode extension
-
+  
 - task: PublishBuildArtifacts@1
   inputs:
     ArtifactName: vscode-extension
