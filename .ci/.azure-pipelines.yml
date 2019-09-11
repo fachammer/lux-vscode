@@ -1,39 +1,74 @@
 trigger:
 - master
 
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-16.04'
-    mac:
-      imageName: 'macos-10.13'
-    windows:
-      imageName: 'vs2017-win2016'
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
-pool:
-  vmImage: $(imageName)
+stages:
+  - stage: build
+    displayName: Build
+    jobs:
+      - job: build
+        displayName: Build on $(Agent.OS)
+        strategy:
+          matrix:
+            linux:
+              imageName: 'ubuntu-16.04'
+            mac:
+              imageName: 'macos-10.13'
+            windows:
+              imageName: 'vs2017-win2016'
+        pool:
+          vmImage: $(imageName)
+        steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '11.x'
+          displayName: 'Install Node.js'
 
-steps:
-
-- task: NodeTool@0
-  inputs:
-    versionSpec: '11.x'
-  displayName: 'Install Node.js'
-
-- bash: yarn
-  displayName: Install dependencies
-- bash: yarn run build
-  displayName: Build extension
-- bash: yarn run test-only
-  displayName: Run Tests
-- bash: yarn run vscode:package
-  displayName: Package vscode extension
-  
-- task: PublishBuildArtifacts@1
-  inputs:
-    ArtifactName: vscode-extension
-    PathtoPublish: artifacts/extension/
-- task: PublishBuildArtifacts@1
-  inputs:
-    ArtifactName: vscode-extension-package
-    PathtoPublish: artifacts/package/
+        - task: CacheBeta@0
+          inputs:
+            key: yarn | $(Agent.OS) | yarn.lock
+            path: $(YARN_CACHE_FOLDER)
+          displayName: Cache Yarn packages
+        - bash: yarn --frozen-lockfile
+          displayName: Install dependencies
+        - script: yarn run build
+          displayName: Build extension
+        
+  - stage: test
+    displayName: Test
+    jobs:
+      - job: test
+        displayName: Test on $(Agent.OS)
+        strategy:
+          matrix:
+            linux:
+              imageName: 'ubuntu-16.04'
+            mac:
+              imageName: 'macos-10.13'
+            windows:
+              imageName: 'vs2017-win2016'
+        pool:
+          vmImage: $(imageName)
+        steps:
+          - bash: yarn run test-only
+            displayName: Run Tests
+  - stage: artifacts
+    displayName: Package and publish artifacts
+    jobs:
+    - job: artifacts
+      pool:
+        vmImage: 'ubuntu-16.04'
+      steps:
+      - bash: yarn run vscode:package
+        displayName: Package vscode extension
+        
+      - task: PublishBuildArtifacts@1
+        inputs:
+          ArtifactName: vscode-extension
+          PathtoPublish: artifacts/extension/
+      - task: PublishBuildArtifacts@1
+        inputs:
+          ArtifactName: vscode-extension-package
+          PathtoPublish: artifacts/package/
