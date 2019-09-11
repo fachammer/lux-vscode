@@ -1,12 +1,14 @@
 {
     "name": "lux-vscode",
     "version": "0.0.1",
+    "publisher": "fachammer",
     "displayName": "Lux",
+    "preview": true,
     "description": "Visual Studio Code language extension for the Lux programming language",
+    "repository": "https://github.com/fachammer/lux-vscode.git",
     "homepage": "https://github.com/fachammer/lux-vscode",
     "bugs": "https://github.com/fachammer/lux-vscode/issues",
     "license": "MIT",
-    "repository": "github:fachammer/lux-vscode",
     "engines": {
         "vscode": "^1.38.0",
         "npm": "6.11.3"
@@ -14,6 +16,9 @@
     "private": true,
     "categories": [
         "Programming Languages"
+    ],
+    "keywords": [
+        "Lux", "syntax highlighting"
     ],
     "contributes": {
         "languages": [
@@ -33,7 +38,7 @@
             {
                 "language": "lux",
                 "scopeName": "source.lux",
-                "path": "./out/syntaxes/lux.tmLanguage.json"
+                "path": "./target/syntaxes/lux.tmLanguage.json"
             }
         ]
     },
@@ -42,19 +47,21 @@
         "test": "syntaxes/lux.tmLanguage.yaml"
     },
     "scripts": {
-        "prebuild": "mkdirp out/syntaxes",
-        "build": "npx js-yaml syntaxes/lux.tmLanguage.yaml > out/syntaxes/lux.tmLanguage.json",
+        "prebuild": "mkdirp target/syntaxes",
+        "build": "js-yaml syntaxes/lux.tmLanguage.yaml > target/syntaxes/lux.tmLanguage.json",
         "build:watch": "npm-watch build",
         "pretest": "npm run-script build",
-        "test": "vscode-tmgrammar-snap -s source.lux -g out/syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\"",
+        "test": "vscode-tmgrammar-snap -s source.lux -g target/syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\"",
         "test:watch": "npm-watch test",
-        "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g out/syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
-        "prepare": "npm run-script build"
+        "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g target/syntaxes/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
+        "vscode:prepublish": "npm run-script build",
+        "vscode:package": "vsce package"
     },
     "devDependencies": {
         "js-yaml": "^3.13.1",
         "mkdirp": "^0.5.1",
         "npm-watch": "^0.6.0",
+        "vsce": "^1.66.0",
         "vscode-tmgrammar-test": "^0.0.6"
     }
 }
