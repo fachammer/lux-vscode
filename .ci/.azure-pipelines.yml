@@ -2,8 +2,8 @@ trigger:
 - master
 
 variables:
-  RELATIVE_CACHE_FOLDER: node_modules
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/$(RELATIVE_CACHE_FOLDER)
+  RELATIVE_YARN_CACHE_FOLDER: .cache/yarn
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/$(RELATIVE_YARN_CACHE_FOLDER)
 
 stages:
   - stage: build_test
@@ -28,10 +28,10 @@ stages:
           displayName: 'Install Node.js'
         - task: CacheBeta@0
           inputs:
-            key: yarn | $(Agent.OS) | $(RELATIVE_CACHE_FOLDER) | yarn.lock
+            key: yarn | $(Agent.OS) | $(RELATIVE_YARN_CACHE_FOLDER) | yarn.lock
             path: $(YARN_CACHE_FOLDER)
           displayName: Cache Yarn packages
-        - bash: yarn
+        - bash: yarn --frozen-lockfile --cache-folder $(YARN_CACHE_FOLDER)
           displayName: Install dependencies
         - script: yarn run build
           displayName: Build extension
