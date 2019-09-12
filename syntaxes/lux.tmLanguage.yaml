@@ -2,11 +2,14 @@ name: Lux
 scopeName: source.lux
 patterns:
 - include: '#comments'
-- include: '#string'
-- include: '#constants'
-- include: '#s-expression'
-- include: '#tuple'
-- include: '#record'
+- include: '#strings'
+- include: '#bools'
+- include: '#reals'
+- include: '#ints'
+- include: '#tags'
+- include: '#s-expressions'
+- include: '#tuples'
+- include: '#records'
 
 repository:
   comments:
@@ -19,12 +22,16 @@ repository:
       end: (\))
       patterns:
       - include: $self
-  constants:
+  bools:
     patterns:
     - name: constant.language.bool.lux
       match: (true|false)
+  reals:
+    patterns:
     - name: constant.numeric.real.lux
       match: ([\+\-]?([0-9]*\.[0-9]+(e[\+\-]?[0-9]+)?|[0-9]+(e[\+\-]?[0-9]+)))(?=[$\s\)\]\}])
+  ints:
+    patterns:
     - name: constant.numeric.int.hex.lux
       match: ([\+\-]?0x[0-9A-Fa-f]+)(?=[$\s\)\]\}])
     - name: constant.numeric.int.binary.lux
@@ -34,13 +41,15 @@ repository:
     - name: invalid.illegal.numeric
       match: ([\+\-]?\.?[0-9].*)(?=[\s\)\]\}])
 
+  tags:
+    patterns:
       # using constant.keyword.clojure instead of constant.tag.lux to
       # leverage existing language syntax themes for clojure
     - name: constant.keyword.clojure
       match: (#[^\[\{\(\]\}\)\s]+(?=[\s\]\}\)]))
     - name: invalid.illegal.tag
       match: (#.*)
-  s-expression:
+  s-expressions:
     name: meta.expression.lux
     begin: (\()
     beginCaptures:
@@ -60,14 +69,14 @@ repository:
       - name: entity.name.function.lux
         match: ([^0-9\s][^\s\)]*)
     - include: '$self'
-  string:
+  strings:
     name: string.quoted.double.lux
     begin: (")
     end: (")
     patterns:
     - name: constant.character.escape.lux
       match: (\\.)
-  tuple:
+  tuples:
     name: meta.tuple.lux
     begin: (\[)
     beginCaptures:
@@ -79,7 +88,7 @@ repository:
         name: punctuation.section.tuple.end.lux
     patterns:
     - include: $self
-  record:
+  records:
     name: meta.record.lux
     begin: (\{)
     beginCaptures:
