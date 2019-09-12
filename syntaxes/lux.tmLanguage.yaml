@@ -38,14 +38,12 @@ repository:
       '1':
         name: punctuation.section.expression.end.trailing.lux
     patterns:
-    - match: (?<=\()([^"]+?:'*)(?=\s|\))
-      captures:
-        '1':
-          name: keyword.control.lux
-    - match: (?<=\()([^"]+?)(?=\s|\))
-      captures:
-        '1':
-          name: entity.name.function.lux
+    - name: entity.name.function.lux
+      begin: (?<=\()\s*
+      end: (?=(\s|\)))
+      patterns:
+      - name: keyword.control.lux
+        match: ([^\s\)]*:[^\s\)]*)
     - include: '#s-expression'
     - include: '#constants'
     - include: '#string'
