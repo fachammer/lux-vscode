@@ -7,6 +7,7 @@ patterns:
 - include: '#reals'
 - include: '#ints'
 - include: '#tags'
+- include: '#symbols'
 - include: '#s-expressions'
 - include: '#tuples'
 - include: '#records'
@@ -21,7 +22,7 @@ repository:
       begin: (#\()
       end: (\))
       patterns:
-      - include: $self
+      - include: '#comments'
   bools:
     patterns:
     - name: constant.language.bool.lux
@@ -40,15 +41,20 @@ repository:
       match: ([\+\-]?[0-9]+)(?=[\s\)\]\}])
     - name: invalid.illegal.numeric
       match: ([\+\-]?\.?[0-9].*)(?=[\s\)\]\}])
-
   tags:
     patterns:
       # using constant.keyword.clojure instead of constant.tag.lux to
-      # leverage existing language syntax themes for clojure
+      # leverage existing color themes for clojure
     - name: constant.keyword.clojure
       match: (#[^\[\{\(\]\}\)\s]+(?=[\s\]\}\)]))
     - name: invalid.illegal.tag
       match: (#.*)
+  symbols:
+    patterns:
+      # using meta.symbol.clojure instead of meta.symbol.lux to
+      # leverage exting color themes for clojure 
+    - name: meta.symbol.clojure
+      match: (?<!\()([^0-9#\(\)\[\]\{\}\s][^#\(\)\[\]\{\}\s]*)
   s-expressions:
     name: meta.expression.lux
     begin: (\()

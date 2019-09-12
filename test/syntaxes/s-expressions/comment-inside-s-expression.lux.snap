@@ -11,5 +11,6 @@
 #          ^^ source.lux meta.expression.lux meta.expression.lux comment.block.lux
 #            ^^^^^^^^^^^^^ source.lux meta.expression.lux meta.expression.lux comment.block.lux
 #                         ^ source.lux meta.expression.lux meta.expression.lux comment.block.lux
-#                          ^^^^ source.lux meta.expression.lux meta.expression.lux
+#                          ^ source.lux meta.expression.lux meta.expression.lux
+#                           ^^^ source.lux meta.expression.lux meta.expression.lux meta.symbol.clojure
 #                              ^ source.lux meta.expression.lux meta.expression.lux punctuation.section.expression.end.trailing.lux

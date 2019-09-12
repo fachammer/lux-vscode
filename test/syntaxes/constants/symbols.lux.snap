@@ -1,0 +1,12 @@
+>a
+#^ source.lux meta.symbol.clojure
+>symbol
+#^^^^^^ source.lux meta.symbol.clojure
+>a-1
+#^^^ source.lux meta.symbol.clojure
+>a?
+#^^ source.lux meta.symbol.clojure
+>a!
+#^^ source.lux meta.symbol.clojure
+><symbol>
+#^^^^^^^^ source.lux meta.symbol.clojure
