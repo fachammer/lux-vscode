@@ -5,6 +5,8 @@ patterns:
 - include: '#string'
 - include: '#constants'
 - include: '#s-expression'
+- include: '#tuple'
+- include: '#record'
 
 repository:
   comments:
@@ -26,7 +28,7 @@ repository:
       # using constant.keyword.clojure instead of constant.tag.lux to
       # leverage existing language syntax themes for clojure
     - name: constant.keyword.clojure
-      match: (#[^\s]+(?=\s|\]))
+      match: (#[^\s\]\)\}]+(?=[\s\]\)\}]))
   s-expression:
     name: meta.expression.lux
     begin: (\()
@@ -38,23 +40,22 @@ repository:
       '1':
         name: punctuation.section.expression.end.trailing.lux
     patterns:
-    - name: entity.name.function.lux
-      begin: (?<=\()\s*
-      end: (?=(\s|\)))
+    - begin: (?<=\()\s*
+      end: (?=[\s\)])
       patterns:
+      - include: '$self'
       - name: keyword.control.lux
-        match: ([^\s\)]*:[^\s\)]*)
-    - include: '#s-expression'
-    - include: '#constants'
-    - include: '#string'
-    - include: '#comment'
+        match: (([^0-9\s][^\s\)]*)?:[^\s\)]*)
+      - name: entity.name.function.lux
+        match: ([^0-9\s][^\s\)]*)
+    - include: '$self'
   string:
     name: string.quoted.double.lux
     begin: (")
     end: (")
     patterns:
     - name: constant.character.escape.lux
-      match: (\.)
+      match: (\\.)
   tuple:
     name: meta.tuple.lux
     begin: (\[)

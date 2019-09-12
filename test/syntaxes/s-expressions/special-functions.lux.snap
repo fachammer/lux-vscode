@@ -1,10 +1,10 @@
 >(def:)
 #^ source.lux meta.expression.lux punctuation.section.expression.begin.lux
-# ^^^^ source.lux meta.expression.lux entity.name.function.lux keyword.control.lux
+# ^^^^ source.lux meta.expression.lux keyword.control.lux
 #     ^ source.lux meta.expression.lux punctuation.section.expression.end.trailing.lux
 >(program:)
 #^ source.lux meta.expression.lux punctuation.section.expression.begin.lux
-# ^^^^^^^^ source.lux meta.expression.lux entity.name.function.lux keyword.control.lux
+# ^^^^^^^^ source.lux meta.expression.lux keyword.control.lux
 #         ^ source.lux meta.expression.lux punctuation.section.expression.end.trailing.lux
 >(case)
 #^ source.lux meta.expression.lux punctuation.section.expression.begin.lux
