@@ -37,7 +37,9 @@ repository:
       # using constant.keyword.clojure instead of constant.tag.lux to
       # leverage existing language syntax themes for clojure
     - name: constant.keyword.clojure
-      match: (#[^\s\]\)\}]+(?=[\s\]\)\}]))
+      match: (#[^\[\{\(\]\}\)\s]+(?=[\s\]\}\)]))
+    - name: invalid.illegal.tag
+      match: (#.*)
   s-expression:
     name: meta.expression.lux
     begin: (\()
