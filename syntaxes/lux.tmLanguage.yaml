@@ -39,7 +39,7 @@ repository:
       match: ([\+\-]?0b[0-1]+)(?=[$\s\)\]\}])
     - name: constant.numeric.int.decimal.lux
       match: ([\+\-]?[0-9]+)(?=[\s\)\]\}])
-    - name: invalid.illegal.numeric
+    - name: invalid.illegal.numeric.lux
       match: ([\+\-]?\.?[0-9].*)(?=[\s\)\]\}])
   tags:
     patterns:
@@ -47,7 +47,7 @@ repository:
       # leverage existing color themes for clojure
     - name: constant.keyword.clojure
       match: (#[^\[\{\(\]\}\)\s]+(?=[\s\]\}\)]))
-    - name: invalid.illegal.tag
+    - name: invalid.illegal.tag.lux
       match: (#.*)
   symbols:
     patterns:
