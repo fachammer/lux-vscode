@@ -1,0 +1,8 @@
+>a#fa
+#^^^^ source.lux invalid.illegal.symbol.lux
+>a(
+#^^ source.lux invalid.illegal.symbol.lux
+>a[
+#^^ source.lux invalid.illegal.symbol.lux
+>a{
+#^^ source.lux invalid.illegal.symbol.lux

@@ -54,7 +54,9 @@ repository:
       # using meta.symbol.clojure instead of meta.symbol.lux to
       # leverage exting color themes for clojure 
     - name: meta.symbol.clojure
-      match: (?<!\()([^0-9#\(\)\[\]\{\}\s][^#\(\)\[\]\{\}\s]*)
+      match: (?<!\()([^0-9#\(\)\[\]\{\}\s][^#\(\)\[\]\{\}\s]*(?=[\)\]\}\s]))
+    - name: invalid.illegal.symbol.lux
+      match:  (?<!\()([^0-9#\(\)\[\]\{\}\s][^\s]*(?=[\)\]\}\s]))
   s-expressions:
     name: meta.expression.lux
     begin: (\()
