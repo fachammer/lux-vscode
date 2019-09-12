@@ -3,7 +3,16 @@
     "description": "Build scripts for lux-vscode",
     "engines": {"npm": "^6.11.3"},
     "private": true,
-    "watch": {"test": "syntaxes/lux.tmLanguage.yaml"},
+    "watch": {
+        "test": { 
+            "patterns": [
+                "syntaxes/lux.tmLanguage.yaml", 
+                "test/syntaxes"
+            ],
+            "extensions": "lux,lux.snap",
+            "inherit": true
+        }
+    },
     "scripts": {
         "clean": "rimraf artifacts/",
         "copy-static-files": "mkdirp artifacts/extension/ && copyfiles --flat CHANGELOG.md LICENSE README.md \"extension/**/*\" artifacts/extension/",
