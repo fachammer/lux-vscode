@@ -36,11 +36,9 @@ stages:
         vmImage: 'ubuntu-16.04'
       steps:
         - template: install-node-and-dependencies.yml
-        - download: current
-          artifact: vscode-extension-$(Agent.OS)
-        - bash: mkdir -p artifacts/ && rm -rf artifacts/extension/ && mv vscode-extension-$(Agent.OS)/ artifacts/extension/
+        - bash: mkdir -p artifacts/ && rm -rf artifacts/extension/ && mv vscode-extension-Linux/ artifacts/extension/
           displayName: Move build files
-        - bash: yarn run vscode:package-only -- vscode-extension-$(Agent.OS)/
+        - bash: yarn run vscode:package-only
           displayName: Package vscode extension
         - publish: artifacts/extension
           artifact: vscode-extension
