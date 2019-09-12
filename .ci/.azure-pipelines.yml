@@ -5,42 +5,29 @@ stages:
   - stage: build_test
     displayName: Build and Test
     jobs:
-      - job: build_test
-        displayName: Build and Test 
-        strategy:
-          matrix:
-            linux:
-              imageName: 'ubuntu-16.04'
-            mac:
-              imageName: 'macos-10.13'
-            windows:
-              imageName: 'vs2017-win2016'
-        pool:
-          vmImage: $(imageName)
-        steps:
-        - template: install-node-and-dependencies.yml
-        - script: yarn run build
-          displayName: Build extension
-        - bash: yarn run test-only
-          displayName: Run Tests
-        - publish: artifacts/extension
-          artifact: vscode-extension-$(Agent.OS)
-          displayName: Publish extension artifact
-  - stage: package
-    dependsOn: build_test
-    displayName: Package and publish artifacts
-    jobs:
-    - job: package_publish
-      displayName: Package and publish artifacts
+    - job: build_test
+      displayName: Build and Test 
+      strategy:
+        matrix:
+          linux:
+            imageName: 'ubuntu-16.04'
+          mac:
+            imageName: 'macos-10.13'
+          windows:
+            imageName: 'vs2017-win2016'
       pool:
-        vmImage: 'ubuntu-16.04'
+        vmImage: $(imageName)
       steps:
-        - template: install-node-and-dependencies.yml
-        - bash: mkdir -p artifacts/ && rm -rf artifacts/extension/ && mv vscode-extension-Linux/ artifacts/extension/
-          displayName: Move build files
-        - bash: yarn run vscode:package-only
-          displayName: Package vscode extension
-        - publish: artifacts/extension
-          artifact: vscode-extension
-        - publish: artifacts/package
-          artifact: vscode-extension-package
+      - template: install-node-and-dependencies.yml
+      - script: yarn run build
+        displayName: Build extension
+      - bash: yarn run test-only
+        displayName: Run Tests
+      - bash: yarn run vscode:package-only
+        displayName: Package vscode extension
+      - publish: artifacts/extension
+        condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
+        artifact: vscode-extension
+      - publish: artifacts/package
+        condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
+        artifact: vscode-extension-package
