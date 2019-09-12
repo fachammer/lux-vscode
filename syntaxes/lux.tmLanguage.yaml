@@ -23,8 +23,17 @@ repository:
     patterns:
     - name: constant.language.bool.lux
       match: (true|false)
-    - name: constant.numeric.int.lux
-      match: ((-|\+)?[0-9][0-9,]*)
+    - name: constant.numeric.real.lux
+      match: ([\+\-]?([0-9]*\.[0-9]+(e[\+\-]?[0-9]+)?|[0-9]+(e[\+\-]?[0-9]+)))(?=[$\s\)\]\}])
+    - name: constant.numeric.int.hex.lux
+      match: ([\+\-]?0x[0-9A-Fa-f]+)(?=[$\s\)\]\}])
+    - name: constant.numeric.int.binary.lux
+      match: ([\+\-]?0b[0-1]+)(?=[$\s\)\]\}])
+    - name: constant.numeric.int.decimal.lux
+      match: ([\+\-]?[0-9]+)(?=[\s\)\]\}])
+    - name: invalid.illegal.numeric
+      match: ([\+\-]?\.?[0-9].*)(?=[\s\)\]\}])
+
       # using constant.keyword.clojure instead of constant.tag.lux to
       # leverage existing language syntax themes for clojure
     - name: constant.keyword.clojure

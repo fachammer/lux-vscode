@@ -1,0 +1,12 @@
+>1a
+#^^ source.lux invalid.illegal.numeric
+>0b2
+#^^^ source.lux invalid.illegal.numeric
+>0xg
+#^^^ source.lux invalid.illegal.numeric
+>123.0e
+#^^^^^^ source.lux invalid.illegal.numeric
+>123.4e+
+#^^^^^^^ source.lux invalid.illegal.numeric
+>123.4e-
+#^^^^^^^ source.lux invalid.illegal.numeric

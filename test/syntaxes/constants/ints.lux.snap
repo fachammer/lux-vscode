@@ -1,0 +1,8 @@
+>123
+#^^^ source.lux constant.numeric.int.decimal.lux
+>-456
+#^^^^ source.lux constant.numeric.int.decimal.lux
+>7890
+#^^^^ source.lux constant.numeric.int.decimal.lux
+>+1234
+#^^^^^ source.lux constant.numeric.int.decimal.lux

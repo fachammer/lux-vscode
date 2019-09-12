@@ -1,0 +1,16 @@
+>1.0
+#^^^ source.lux constant.numeric.real.lux
+>.0
+#^^ source.lux constant.numeric.real.lux
+>.123
+#^^^^ source.lux constant.numeric.real.lux
+>0.123e10
+#^^^^^^^^ source.lux constant.numeric.real.lux
+>-1.0
+#^^^^ source.lux constant.numeric.real.lux
+>-.1
+#^^^ source.lux constant.numeric.real.lux
+>+1.0
+#^^^^ source.lux constant.numeric.real.lux
+>-123e-20123
+#^^^^^^^^^^^ source.lux constant.numeric.real.lux
