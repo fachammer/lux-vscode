@@ -71,8 +71,6 @@ repository:
     - begin: (?<=\()\s*
       end: (?=[\s\)])
       patterns:
-      - name: keyword.control.lux
-        match: (([^0-9\s][^\s\)]*)?:[^\s\)]*)
       - name: entity.name.function.lux
         match: ([^0-9\s][^\s\)]*)
       - include: '$self'
