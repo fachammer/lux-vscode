@@ -43,16 +43,16 @@ repository:
       match: ([\+\-]?\.?[0-9].*)(?=[\s\)\]\}])
   tags:
     patterns:
-      # using constant.keyword.clojure instead of constant.tag.lux to
-      # leverage existing color themes for clojure
+      # using constant.keyword.clojure instead of constant.tag.lux 
+      # to leverage existing color themes for clojure
     - name: constant.keyword.clojure
-      match: (#[^\[\{\(\]\}\)\s]+(?=[\s\]\}\)]))
+      match: (#[^\[\]\{\}\(\)\s]+(?=[\s\]\}\)]))
     - name: invalid.illegal.tag.lux
       match: (#.*)
   symbols:
     patterns:
-      # using meta.symbol.clojure instead of meta.symbol.lux to
-      # leverage exting color themes for clojure 
+      # using meta.symbol.clojure instead of meta.symbol.lux 
+      # to leverage existing color themes for clojure 
     - name: meta.symbol.clojure
       match: (?<!\()([^0-9#\(\)\[\]\{\}\s][^#\(\)\[\]\{\}\s]*(?=[\)\]\}\s]))
     - name: invalid.illegal.symbol.lux
@@ -71,11 +71,11 @@ repository:
     - begin: (?<=\()\s*
       end: (?=[\s\)])
       patterns:
-      - include: '$self'
       - name: keyword.control.lux
         match: (([^0-9\s][^\s\)]*)?:[^\s\)]*)
       - name: entity.name.function.lux
         match: ([^0-9\s][^\s\)]*)
+      - include: '$self'
     - include: '$self'
   strings:
     name: string.quoted.double.lux
