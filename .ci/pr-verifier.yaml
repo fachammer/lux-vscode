@@ -1,31 +1,45 @@
 trigger: none
 
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-16.04'
-    mac:
-      imageName: 'macos-10.13'
-    windows:
-      imageName: 'vs2017-win2016'
-pool:
-  vmImage: $(imageName)
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '11.x'
-  displayName: install node
-- bash: yarn --frozen-lockfile --cache-folder "$(Pipeline.Workspace)/.cache/yarn"
-  displayName: install dependencies
-- script: yarn run build
-  displayName: build extension
-- bash: yarn run test-only
-  displayName: run tests
-- bash: yarn run vscode:package-only
-  displayName: package vscode extension
-- publish: artifacts/extension
-  condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
-  artifact: vscode-extension
-- publish: artifacts/package
-  condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
-  artifact: vscode-extension-package
+jobs:
+- job: commit_verifier
+  displayName: verify commits
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: 11.x
+    displayName: install node
+  - bash: yarn && yarn run commitlint --from origin/master --to HEAD
+    displayName: verify commits
+- job: build
+  displayName: build
+  strategy:
+    matrix:
+      linux:
+        imageName: ubuntu-16.04
+      mac:
+        imageName: macos-10.13
+      windows:
+        imageName: vs2017-win2016
+  pool:
+    vmImage: $(imageName)
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '11.x'
+    displayName: install node
+  - bash: yarn --frozen-lockfile --cache-folder "$(Pipeline.Workspace)/.cache/yarn"
+    displayName: install dependencies
+  - script: yarn run build
+    displayName: build extension
+  - bash: yarn run test-only
+    displayName: run tests
+  - bash: yarn run vscode:package-only
+    displayName: package vscode extension
+  - publish: artifacts/extension
+    condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
+    artifact: vscode-extension
+  - publish: artifacts/package
+    condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
+    artifact: vscode-extension-package
