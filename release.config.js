@@ -8,8 +8,15 @@ module.exports = {
       "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}\n\n[skip ci]"
     }],
     ["semantic-release-vsce", {
-      "packageVsix": "lux-vscode.vsix"
+      "packageVsix": "lux-vscode-${nextRelease.version}.vsix"
     }],
-    "@semantic-release/github"
+    ["@semantic-release/github", {
+      "assets": [
+        {
+          label: "lux-vscode-${nextRelease.version}.vsix package",
+          path: "lux-vscode-${nextRelease.version}.vsix",
+        }
+      ]
+    }]
   ]
 };
