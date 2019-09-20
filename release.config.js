@@ -5,7 +5,7 @@ module.exports = {
     "@semantic-release/changelog",
     ["@semantic-release/git", {
       "assets": ["package.json", "package-lock.json", "CHANGELOG.md"],
-      "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}\n[skip ci]"
+      "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}\n\n[skip ci]"
     }],
     ["semantic-release-vsce", {
       "packageVsix": "lux-vscode.vsix"
