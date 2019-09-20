@@ -71,9 +71,7 @@
         "test": "yarn run build && yarn run test-only",
         "test:watch": "npm-watch test",
         "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
-        "vscode:package-only": "mkdirp artifacts/package && vsce package --yarn --out artifacts/package/lux-vscode.vsix",
-        "vscode:package": "yarn test && yarn run vscode:package-only",
-        "preversion": "yarn test",
+        "vscode:prepublish": "yarn test",
         "semantic-release": "semantic-release"
     },
     "devDependencies": {
