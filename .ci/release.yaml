@@ -1,0 +1,22 @@
+trigger:
+- master
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+steps:
+  - checkout: self
+    submodules: true
+  - task: NodeTool@0
+    inputs:
+      versionSpec: 11.x
+    displayName: install node
+  - bash: yarn
+    displayName: install module
+  - bash: yarn run semantic-release --dry-run
+    displayName: semantic release
+    env:
+      GH_TOKEN: $(GH_TOKEN)
+      NPM_TOKEN: $(NPM_TOKEN)
+      BUILD_SOURCEBRANCHNAME: $(Build.SourceBranchName)
