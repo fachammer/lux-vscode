@@ -1,0 +1,9 @@
+.ci/
+.vscode/
+artifacts/
+syntaxes/
+test/
+.gitignore
+commitlint.config.js
+release.config.js
+yarn-error.log
