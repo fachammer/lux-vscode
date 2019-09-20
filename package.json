@@ -1,16 +1,28 @@
 {
     "name": "lux-vscode-build",
     "description": "Build scripts for lux-vscode",
-    "engines": {"npm": "^6.11.3"},
+    "engines": {
+        "npm": "^6.11.3"
+    },
     "private": true,
     "watch": {
-        "test": { 
+        "test": {
             "patterns": [
-                "syntaxes/lux.tmLanguage.yaml", 
+                "syntaxes/lux.tmLanguage.yaml",
                 "test/syntaxes"
             ],
             "extensions": "lux,lux.snap",
             "inherit": true
+        }
+    },
+    "husky": {
+        "hooks": {
+          "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    },
+    "config": {
+        "cz-customizable": {
+          "config": "commitlint.confg.js"
         }
     },
     "scripts": {
@@ -22,14 +34,23 @@
         "test:watch": "npm-watch test",
         "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g artifacts/extension/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
         "vscode:package-only": "cd artifacts/extension && mkdirp ../package && vsce package --yarn --out ../package/lux-vscode.vsix",
-        "vscode:package": "yarn run test && yarn run vscode:package-only"
+        "vscode:package": "yarn run test && yarn run vscode:package-only",
+        "semantic-release": "semantic-release"
     },
     "devDependencies": {
+        "@commitlint/cli": "^8.2.0",
+        "@commitlint/config-conventional": "^8.2.0",
+        "@commitlint/prompt-cli": "^8.2.0",
+        "@semantic-release/changelog": "^3.0.4",
+        "@semantic-release/git": "^7.0.16",
+        "commitizen": "^4.0.3",
         "copyfiles": "^2.1.1",
+        "husky": "^3.0.5",
         "js-yaml": "^3.13.1",
         "mkdirp": "^0.5.1",
         "npm-watch": "^0.6.0",
         "rimraf": "^3.0.0",
+        "semantic-release": "^15.13.24",
         "vsce": "^1.66.0",
         "vscode-tmgrammar-test": "^0.0.6",
         "yarn": "^1.17.3"
