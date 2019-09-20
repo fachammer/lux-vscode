@@ -35,7 +35,8 @@
         "test:watch": "npm-watch test",
         "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g artifacts/extension/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
         "vscode:package-only": "cd artifacts/extension && mkdirp ../package && vsce package --yarn --out ../package/lux-vscode.vsix",
-        "vscode:package": "yarn run test && yarn run vscode:package-only",
+        "vscode:package": "yarn test && yarn run vscode:package-only",
+        "preversion": "yarn test",
         "semantic-release": "semantic-release"
     },
     "devDependencies": {
