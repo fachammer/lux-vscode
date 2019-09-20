@@ -1,10 +1,48 @@
 {
-    "name": "lux-vscode-build",
-    "description": "Build scripts for lux-vscode",
+    "name": "lux-vscode",
+    "version": "0.0.1",
+    "publisher": "fachammer",
+    "displayName": "Lux",
+    "preview": true,
+    "description": "Visual Studio Code language extension for the Lux programming language",
+    "repository": "https://github.com/fachammer/lux-vscode.git",
+    "homepage": "https://github.com/fachammer/lux-vscode",
+    "bugs": "https://github.com/fachammer/lux-vscode/issues",
+    "license": "MIT",
     "engines": {
+        "vscode": "^1.38.0",
         "npm": "^6.11.3"
     },
     "private": true,
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords": [
+        "Lux",
+        "syntax highlighting"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "lux",
+                "aliases": [
+                    "Lux",
+                    "lux"
+                ],
+                "extensions": [
+                    ".lux"
+                ],
+                "configuration": "language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "lux",
+                "scopeName": "source.lux",
+                "path": "lux.tmLanguage.json"
+            }
+        ]
+    },
     "watch": {
         "test": {
             "patterns": [
@@ -28,13 +66,12 @@
     "scripts": {
         "clean": "rimraf artifacts/",
         "commit": "commit",
-        "copy-static-files": "mkdirp artifacts/extension/ && copyfiles --flat CHANGELOG.md LICENSE README.md \"extension/**/*\" artifacts/extension/",
-        "build": "yarn run copy-static-files && js-yaml syntaxes/lux.tmLanguage.yaml > artifacts/extension/lux.tmLanguage.json",
-        "test-only": "vscode-tmgrammar-snap -s source.lux -g artifacts/extension/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\"",
+        "build": "js-yaml syntaxes/lux.tmLanguage.yaml > lux.tmLanguage.json",
+        "test-only": "vscode-tmgrammar-snap -s source.lux -g lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\"",
         "test": "yarn run build && yarn run test-only",
         "test:watch": "npm-watch test",
-        "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g artifacts/extension/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
-        "vscode:package-only": "cd artifacts/extension && mkdirp ../package && vsce package --yarn --out ../package/lux-vscode.vsix",
+        "commit-snapshots": "vscode-tmgrammar-snap -s source.lux -g lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\" --updateSnapshot",
+        "vscode:package-only": "mkdirp artifacts/package && vsce package --yarn --out artifacts/package/lux-vscode.vsix",
         "vscode:package": "yarn test && yarn run vscode:package-only",
         "preversion": "yarn test",
         "semantic-release": "semantic-release"
