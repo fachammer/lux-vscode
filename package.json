@@ -27,6 +27,7 @@
     },
     "scripts": {
         "clean": "rimraf artifacts/",
+        "commit": "commit",
         "copy-static-files": "mkdirp artifacts/extension/ && copyfiles --flat CHANGELOG.md LICENSE README.md \"extension/**/*\" artifacts/extension/",
         "build": "yarn run copy-static-files && js-yaml syntaxes/lux.tmLanguage.yaml > artifacts/extension/lux.tmLanguage.json",
         "test-only": "vscode-tmgrammar-snap -s source.lux -g artifacts/extension/lux.tmLanguage.json -t \"test/syntaxes/**/*.lux\"",
