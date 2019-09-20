@@ -1,5 +1,4 @@
-trigger:
-- master
+trigger: none
 
 strategy:
   matrix:
@@ -12,13 +11,18 @@ strategy:
 pool:
   vmImage: $(imageName)
 steps:
-- template: install-node-and-dependencies.yml
+- task: NodeTool@0
+  inputs:
+    versionSpec: '11.x'
+  displayName: install node
+- bash: yarn --frozen-lockfile --cache-folder "$(Pipeline.Workspace)/.cache/yarn"
+  displayName: install dependencies
 - script: yarn run build
-  displayName: Build extension
+  displayName: build extension
 - bash: yarn run test-only
-  displayName: Run Tests
+  displayName: run tests
 - bash: yarn run vscode:package-only
-  displayName: Package vscode extension
+  displayName: package vscode extension
 - publish: artifacts/extension
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
   artifact: vscode-extension
