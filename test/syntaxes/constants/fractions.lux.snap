@@ -1,0 +1,17 @@
+>+1.0
+#^^^^ source.lux constant.numeric.fraction.lux
+>+0.0
+#^^^^ source.lux constant.numeric.fraction.lux
+>-0.123
+#^^^^^^ source.lux constant.numeric.fraction.lux
+>+0.123
+#^^^^^^ source.lux constant.numeric.fraction.lux
+>-1.0
+#^^^^ source.lux constant.numeric.fraction.lux
+>-0.1
+#^^^^ source.lux constant.numeric.fraction.lux
+>+1.0
+#^^^^ source.lux constant.numeric.fraction.lux
+>-123.0
+#^^^^^^ source.lux constant.numeric.fraction.lux
+>

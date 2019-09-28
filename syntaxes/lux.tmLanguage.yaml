@@ -4,7 +4,7 @@ patterns:
 - include: '#comments'
 - include: '#strings'
 - include: '#bools'
-- include: '#reals'
+- include: '#fractions'
 - include: '#ints'
 - include: '#tags'
 - include: '#symbols'
@@ -22,10 +22,10 @@ repository:
     patterns:
     - name: constant.language.bool.lux
       match: (#0|#1)
-  reals:
+  fractions:
     patterns:
-    - name: constant.numeric.real.lux
-      match: ([\+\-]?([0-9]*\.[0-9]+(e[\+\-]?[0-9]+)?|[0-9]+(e[\+\-]?[0-9]+)))(?=[$\s\)\]\}])
+    - name: constant.numeric.fraction.lux
+      match: ([\+\-]([0-9]+\.[0-9]+))
   ints:
     patterns:
     - name: constant.numeric.int.hex.lux
