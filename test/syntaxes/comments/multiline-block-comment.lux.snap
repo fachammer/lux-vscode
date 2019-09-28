@@ -1,6 +1,0 @@
->#(This is
-#^^ source.lux comment.block.lux
-#  ^^^^^^^^ source.lux comment.block.lux
->a multiline block comment)
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.lux comment.block.lux
-#                         ^ source.lux comment.block.lux

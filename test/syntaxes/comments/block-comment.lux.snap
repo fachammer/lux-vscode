@@ -1,4 +1,0 @@
->#(This is a block comment)
-#^^ source.lux comment.block.lux
-#  ^^^^^^^^^^^^^^^^^^^^^^^ source.lux comment.block.lux
-#                         ^ source.lux comment.block.lux

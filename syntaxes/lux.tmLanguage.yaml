@@ -18,11 +18,6 @@ repository:
     - name: comment.line.double-hash.lux
       begin: (##)
       end: ($)
-    - name: comment.block.lux
-      begin: (#\()
-      end: (\))
-      patterns:
-      - include: '#comments'
   bools:
     patterns:
     - name: constant.language.bool.lux
@@ -43,7 +38,7 @@ repository:
       match: ([\+\-]?\.?[0-9].*)(?=[\s\)\]\}])
   tags:
     patterns:
-      # using constant.keyword.clojure instead of constant.tag.lux 
+      # using constant.keyword.clojure instead of constant.tag.lux
       # to leverage existing color themes for clojure
     - name: constant.keyword.clojure
       match: (#[^\[\]\{\}\(\)\s]+(?=[\s\]\}\)]))
@@ -51,8 +46,8 @@ repository:
       match: (#.*)
   symbols:
     patterns:
-      # using meta.symbol.clojure instead of meta.symbol.lux 
-      # to leverage existing color themes for clojure 
+      # using meta.symbol.clojure instead of meta.symbol.lux
+      # to leverage existing color themes for clojure
     - name: meta.symbol.clojure
       match: (?<!\()([^0-9#\(\)\[\]\{\}\s][^#\(\)\[\]\{\}\s]*(?=[\)\]\}\s]))
     - name: invalid.illegal.symbol.lux
