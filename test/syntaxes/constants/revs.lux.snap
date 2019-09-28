@@ -1,0 +1,7 @@
+>.123,456,789
+#^^^^^^^^^^^^ source.lux constant.numeric.rev.lux
+>.0
+#^^ source.lux constant.numeric.rev.lux
+>.123,,234,,,25,34,46,6,8
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.lux constant.numeric.rev.lux
+>

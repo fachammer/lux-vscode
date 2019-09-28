@@ -5,6 +5,7 @@ patterns:
 - include: '#strings'
 - include: '#bools'
 - include: '#nats'
+- include: '#revs'
 - include: '#fractions'
 - include: '#ints'
 - include: '#tags'
@@ -31,6 +32,10 @@ repository:
     patterns:
     - name: constant.numeric.int.lux
       match: ([\+\-][0-9,]+)
+  revs:
+    patterns:
+    - name: constant.numeric.rev.lux
+      match: (\.[0-9,]+)
   fractions:
     patterns:
     - name: constant.numeric.fraction.lux
