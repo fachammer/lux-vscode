@@ -4,6 +4,7 @@ patterns:
 - include: '#comments'
 - include: '#strings'
 - include: '#bools'
+- include: '#nats'
 - include: '#fractions'
 - include: '#ints'
 - include: '#tags'
@@ -22,14 +23,18 @@ repository:
     patterns:
     - name: constant.language.bool.lux
       match: (#0|#1)
-  fractions:
+  nats:
     patterns:
-    - name: constant.numeric.fraction.lux
-      match: ([\+\-]([0-9]+\.[0-9]+))
+    - name: constant.numeric.nat.lux
+      match: ([0-9,]+)
   ints:
     patterns:
     - name: constant.numeric.int.lux
-      match: ([\+\-][0-9]+)
+      match: ([\+\-][0-9,]+)
+  fractions:
+    patterns:
+    - name: constant.numeric.fraction.lux
+      match: ([\+\-]([0-9,]+\.[0-9,]+))
   tags:
     patterns:
       # using constant.keyword.clojure instead of constant.tag.lux

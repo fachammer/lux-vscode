@@ -1,0 +1,7 @@
+>123
+#^^^ source.lux constant.numeric.nat.lux
+>123,456,789,000
+#^^^^^^^^^^^^^^^ source.lux constant.numeric.nat.lux
+>1,,2,,3,,,4,,,5,,,6
+#^^^^^^^^^^^^^^^^^^^ source.lux constant.numeric.nat.lux
+>
