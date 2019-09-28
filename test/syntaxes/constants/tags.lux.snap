@@ -1,5 +1,7 @@
 >#tag
 #^^^^ source.lux constant.keyword.clojure
 >#other-tag
-#^^ source.lux constant.keyword.clojure
+#^^^^^^^^^^ source.lux constant.keyword.clojure
+>#
+#^ source.lux invalid.illegal.tag.lux
 >

@@ -1,12 +1,13 @@
->#
-#^ source.lux invalid.illegal.tag.lux
 >#[
 #^^ source.lux invalid.illegal.tag.lux
 >#{
 #^^ source.lux invalid.illegal.tag.lux
-># 
+>#(
+#^^ source.lux invalid.illegal.tag.lux
+>#)
 #^^ source.lux invalid.illegal.tag.lux
 >#]
 #^^ source.lux invalid.illegal.tag.lux
 >#}
 #^^ source.lux invalid.illegal.tag.lux
+>

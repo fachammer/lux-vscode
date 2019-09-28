@@ -4,10 +4,10 @@ patterns:
 - include: '#comments'
 - include: '#strings'
 - include: '#bools'
-- include: '#nats'
-- include: '#revs'
 - include: '#fractions'
 - include: '#ints'
+- include: '#revs'
+- include: '#nats'
 - include: '#tags'
 - include: '#symbols'
 - include: '#s-expressions'
@@ -45,7 +45,7 @@ repository:
       # using constant.keyword.clojure instead of constant.tag.lux
       # to leverage existing color themes for clojure
     - name: constant.keyword.clojure
-      match: (#[^\[\]\{\}\(\)\s]+(?=[\s\]\}\)]))
+      match: (#[^\[\]\{\}\(\)\s0-9"#][^\[\]\{\}\(\)\s"#]*)
     - name: invalid.illegal.tag.lux
       match: (#.*)
   symbols:
