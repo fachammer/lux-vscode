@@ -1,4 +1,5 @@
 >#tag
 #^^^^ source.lux constant.keyword.clojure
->#1
+>#other-tag
 #^^ source.lux constant.keyword.clojure
+>

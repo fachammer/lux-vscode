@@ -21,7 +21,7 @@ repository:
   bools:
     patterns:
     - name: constant.language.bool.lux
-      match: (true|false)
+      match: (#0|#1)
   reals:
     patterns:
     - name: constant.numeric.real.lux

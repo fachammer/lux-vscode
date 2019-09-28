@@ -1,4 +1,5 @@
->true
+>#1
 #^^^^ source.lux constant.language.bool.lux
->false
+>#0
 #^^^^^ source.lux constant.language.bool.lux
+>
