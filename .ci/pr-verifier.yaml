@@ -35,8 +35,3 @@ jobs:
     displayName: build extension
   - bash: yarn run test-only
     displayName: run tests
-  - bash: yarn run vscode:package-only
-    displayName: package vscode extension
-  - publish: artifacts/package
-    condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
-    artifact: vscode-extension-package
