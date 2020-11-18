@@ -87,7 +87,7 @@
         "mkdirp": "^0.5.1",
         "npm-watch": "^0.6.0",
         "rimraf": "^3.0.0",
-        "semantic-release": "^15.13.24",
+        "semantic-release": "^17.2.3",
         "semantic-release-vsce": "^2.2.8",
         "vsce": "^1.66.0",
         "vscode-tmgrammar-test": "^0.0.6",
